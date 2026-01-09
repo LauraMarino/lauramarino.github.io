@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html><head>
+    <title>BTW6: Quantum TQFTs and the volume conjecture</title>
+    <link href="BTW6_files/style-besse.css" rel="stylesheet" type="text/css" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <script src="BTW6_files/polyfill.min.js"></script><script type="text/javascript" id="MathJax-script" async="" src="BTW6_files/tex-chtml.js">
+</script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  
+
+  <body>
+    <div class="header">
+      <div class="header-top">
+	<div class="wrap">
+	  <div class="logo">   
+	    <!-- <a href="https://www.cirm-math.fr/"><img src="../Images/logo_cirm.jpg" style="height:3cm" alt=""></a> -->
+	    <strong style="color: white; font-size: 32px; margin-left: 0px">BTW6: Quantum TQFTs and the volume conjecture</strong>
+	    <br>
+	      
+	  </div>
+	  <div class="clear"></div>
+	</div>
+      </div>
+      <div class="header-bottom">
+	<div class="wrap"> 
+	  <div id="cssmenu">
+	    <ul>
+	      <li><a href="btw6.html#info"><span>Practical information</span></a></li>
+	      <li><a href="btw6.html#presentation"><span>Presentation</span></a></li>
+	      <li><a href="btw6.html#program"><span>Program</span></a></li>
+	      <li><a href="btw6.html#schedule"><span>Schedule</span></a></li> 
+	      <!-- <li><a href="btw6.html#pretalks"><span>Pre-talks</span></a></li>  -->
+	      <li><a href="btw6.html#participants"><span>Participants</span></a></li>
+	      <li><a href="btw6.html#organizers"><span>Organizers</span></a></li>
+	      <div class="clear"></div> 
+	    </ul>
+	  </div>
+	</div>
+      </div>	
+    </div>
+    <div class="wrap">
+      <div class="section group">
+	<div class="lsidebar span_1_of_3">
+	  <img src="BTW6_files/frejus.jpeg" width="100%" alt="">
+<!-- <p style="margin-top:-5px;font-size:10px">Photo by <a href="https://commons.wikimedia.org/wiki/User:Ibex73">Ibex73</a></p> -->
+	  <br>
+	  <br>
+	  <!-- <h2>The event is supported by: </h2>
+	  <p style="text-align:center"> -->
+	  <!--   <\!-- <img src="Images/Logo-Paris7.jpg" width="90%" alt="Universit&eacute; Paris 7 -- Denis Diderot"/><br> -\-> -->
+	    <!-- <a href="https://anr.fr/"><img src="../Images/ANR-Logo.jpg" width="80%" alt="Logo ANR" title="ANR"/></a> -->
+	    <!-- <a href="https://imag.umontpellier.fr/"><img src="BTW6_files/logo_imag.png" width="40%" alt="Logo IMAG" title="IMAG"></a>
+	    <a href="https://frmraa.math.cnrs.fr/"><img src="BTW6_files/logo_mara.jpg" width="40%" alt="Fédération MARA"></a>
+	    	    <a href="https://lmbp.uca.fr/"><img src="BTW6_files/logo_lmbp.png" width="40%" alt="LMBP"></a> -->
+	    <!--   <\!-- <img src="Images/Logo-imjprg.jpg" width="80%" alt="ANR"/><br> -\-> -->
+	    <!-- <a href="https://rtop.math.cnrs.fr/"><img src="BTW6_files/logo_gdrtresses.png" width="40%" alt="RT Topologie Algébrique et Géométrique" title="RT Top"></a> -->
+	    <!-- <a href="https://www.uni-goettingen.de/en/607635.html"><img src="../Images/logo_rtg2491.jpg" width="70%" alt="Logo RTG 2491" title="RTG 2491 -- Fourier Analysis and Spectral Theory"/></a> -->
+	    <!-- <a href="http://frumam.cnrs-mrs.fr/en/presentation-2/"><img src="../Images/logo_frumam.jpg" width="25%" alt="Logo FRUMAM" title= "FRUMAM"/></a> -->
+	  <!--   <a href="https://www.i2m.univ-amu.fr/"><img src="../Images/logo_i2m.png" width="25%" alt="Logo I2M" title= "Institut de Math&eacute;matiques de Marseille"/></a> -->
+	  </p>
+	  <br><br>
+	  <!-- <h2>The Station biologique is supported by:</h2>
+	  
+	  <p style="text-align:center; vertical-align:middle">
+	    <a href="https://www.uca.fr/"><img src="BTW6_files/logo_uca.jpg" width="50%" alt="Logo CNRS" title="Centre National de la Recherche Scientifique"></a> -->
+	    <!-- <a href="https://www.cnrs.fr/"><img src="../Images/logo_cnrs.png" width="20%" alt="Logo CNRS" title="Centre National de la Recherche Scientifique"/></a> -->
+	<!--     <a href="https://www.smf.fr/"><img src="../Images/logo_smf.jpg" width="20%" alt="Logo SMF" title="Soci&eacute;t&eacute; Math&eacute;matique de France"/></a> -->
+	<!--     <a href="https://www.marseille.fr/"><img src="../Images/logo_marseille.png" width="45%" alt="Logo Marseille" title="Ville de Marseille"/></a> -->
+	<!--     <a href="http://www.ihp.fr/en/institute/IHP/labExCARMIN"><img src="../Images/logo_carmin.jpg" width="25%" alt="Logo CARMIN" title="Labex CARMIN"/></a> -->
+	<!--     <a href="https://www.enseignementsup-recherche.gouv.fr/"><img src="../Images/logo_ministere.png" width="20%" alt="Logo Minist&egrave;re" title="Minist&egrave;re de l'enseignement sup&eacute;rieur, de la recherche et de l'innovation"/></a> -->
+	<!--     <a href="https://www.maregionsud.fr"><img src="../Images/logo_paca.jpg" width="30%" alt="Logo PACA" title="R&eacute;gion Sud"/></a> -->
+	<!--     <a href="https://www.univ-amu.fr/fr/public/institut-archimede-mathematiques-informatique-ami-0"><img src="../Images/logo_archi.png" width="35%" alt="Logo Archim&egrave;de" title="Institut Archimède Mathématiques-Informatique"/></a> -->
+	<!--     <a href="https://www.univ-amu.fr/en"><img src="../Images/logo_amu.jpg" width="35%" alt="Logo AMU" title="Aix Marseille Universit&eacute;"/></a> -->
+	  </p>
+	</div>
+
+	<div class="cont span_2_of_3">
+
+	  <a name="info"><h3>Practical information</h3>
+
+	      This workhsop will take place at the </a><a href="https://www.caes.cnrs.fr/sejours/la-villa-clythia/">Villa Clythia</a>
+ in Fréjus from the 10th to the 15th of
+ May 2026. <!-- For coming you'll need to arrive in Clermont-Ferrand by the
+ 9th of March afternoon. A bus shuttle will take you to the Station 
+Biologique. Note neither towels nor toiletories are provided by the 
+Station biologique. Every particpant is required to follow the <a href="https://www.fr-cirm-math.fr/wp-content/uploads/2024/06/Charte-Harcelement-CIRM-3-717x1024.png">code of conduct</a> written by the CIRM team. -->
+<br><br>
+
+	    <a name="presentation"><h3>Presentation of the workshop</h3></a>
+
+	    <br>
+	
+	    This workshop aims at bringing together mostly young
+	    researchers to spend one week studying a topic in low
+	    dimensional topology. Part of the week is dedicated to
+	    detailed talks taking time to introduce the background of
+	    the theory necessary to tackle more recent questions. Time
+	    is voluntarily made available to encourage discussion that
+	    the presentations will generate.<br><br>
+
+	    This is the sixth edition of the series "<a href="https://lrobert.perso.math.cnrs.fr/tbtw.html">Between the Waves</a>". <!-- We studied relations between homological and quantum invariants -->
+	    <!-- in low-dimensional topology in the <a href="https://lrobert.perso.math.cnrs.fr/HQI/hqi.html">first edition</a>. The <a href="https://lrobert.perso.math.cnrs.fr/BTW2/btw2.html">second edition</a> focused on relations between knots/knotted -->
+	    <!-- objects and 4-manifolds. The <a href="https://lrobert.perso.math.cnrs.fr/BTW3/btw3.html">third edition</a> had topic Morse and Floer theory, and the <a href="https://lrobert.perso.math.cnrs.fr/BTW4/btw4.html">fourth edition</a>, Knot Floer homology and knot genus detection. -->
+	    <!-- <br><br> -->
+	    The aim of this edition is to understand <strong>the correspondence between the Reshetikhin-Turaev and Turaev-Viro TQFTs and its application to the volume conjecture</strong>.
+	    <!-- <br><br> -->
+    	    <!-- We endebted to Paolo <a href="https://www.math.sciences.univ-nantes.fr/~ghiggini/">Ghiggini</a> for his contribution to the program. -->
+	    
+
+	    <!-- following closely the -->
+	    <!-- book<i> Morse theory and Floer homology</i> by Audin and -->
+	    <!-- Damian. The motivating result will be a proof of a -->
+	    <!-- conjecture of Arnold yielding a lower bound on the number -->
+	    <!-- of fixed points of Hamiltonian diffeomorphisms.  We will -->
+	    <!-- start with a revue of Morse theory, including a -->
+	    <!-- construction of the Morse complex and Morse -->
+	    <!-- inequalities. Then we will study the Floer complex, an -->
+	    <!-- infinite-dimensional analogue of the Morse complex, and -->
+	    <!-- the associated homology. Finally, we will apply all this -->
+	    <!-- material to prove the Arnold conjecture. -->
+	    
+	    <!-- First, we will review the basic definitions of Morse -->
+	    <!-- theory, leading to the introduction of the Morse complex -->
+	    <!-- [Audin&ndash;Damian, Laudenbach] Then we will have a -->
+	    <!-- combinatorial interlude, studying the <i>discrete</i> -->
+	    <!-- Morse theory introduced by Robin Forman.  The second part -->
+	    <!-- of the week will be dedicated to infinite dimensional -->
+	    <!-- versions of Morse theory.  First, we will follow closely -->
+	    <!-- the beautiful book of Milnor, with the objective to -->
+	    <!-- describe the cell decomposition of the path space -->
+	    <!-- associated to a Riemannian manifold.  Finally, we will -->
+	    <!-- rigorously introduce the Floer complex. We will follow -->
+	    <!-- again [Audin&ndash;Damian], with as a motivation in mind the proof of -->
+	    <!-- Arnold conjecture. -->
+	  <!-- The third instance of BTW will focus on Morse and Floer Theory. We will mostly follow the book by Mich&egrave;le Audin and Mihai Damian. -->
+	  <br><br><br>
+
+<!-- 	  <p><img src="surfaces.jpg" width="100%"> -->
+<!-- <p style="margin-top:-5px;font-size:12px">Chalk drawings by Jacques Darn&eacute;</a></p></p> -->
+
+
+<a name="program"><h3>Program</h3></a>
+
+<br>
+The program will be available soon.
+<!-- is available <a href="https://lauramarino.github.io/BTW6/BTW6Program.pdf">here</a>. -->
+<!-- A pdf version of the program with abstracts and speakers can be found <a href="BTW6.pdf">here</a>. -->
+<br><br><br>
+
+<!-- <link rel="import" href="btw4program.html"> -->
+
+
+<h3>Schedule</h3>
+	  <br>
+<ul>
+<li><strong>TBC</strong></li>
+<!-- <li><strong>Monday</strong></li>
+<li>09:00 — 10:30: 1.1: Nicola MEDICI</li>
+<li>11:00 — 12:30: 1.2: Alexis GUÉRIN</li>
+<li>14:30 — 16:00: 1.3: Gaëtan SIMIAN, Edwin KITAEFF</li>
+<li>16:30 — 18:00: 1.4: Maya KAYALI, Simone TAGLIENTE</li>
+<li></li>
+<li><strong>Tuesday</strong></li>
+<li>09:00 — 10:30: 2.1: Christian MELDER</li>
+<li>11:00 — 12:30: 2.2: Yvon FREDRICH</li>
+<li>14:30 — 16:00: 2.3: Nikolas ADALOGLOU</li>
+<li>16:30 — 18:00: 2.4: Tanushree SHAH</li>
+<li></li>
+<li></li>
+<li><strong>Wednesday</strong></li>
+<li>09:00 — 12:30: Hike to <a href="https://en.wikipedia.org/wiki/Lac_Pavin">Lac Pavin</a>
+</li><li>14:30 — 16:00: 2.5: Livio FERRETTI</li>
+<li>16:30 — 18:00: 2.6: Misha SCHMALIAN</li>
+<li></li>
+<li><strong>Thursday</strong></li>
+<li>09:00 — 10:30: 3.1: Yohan MANDIN HUBLÉ</li>
+<li>11:00 — 12:30: 3.2: Chun-Sheng HSUEH</li>
+<li>14:30 — 16:00: 4.1: Benjamin HAÏOUN</li>
+<li>16:30 — 18:00: 4.2: Filippo BIANCHI</li>
+<li></li>
+<li><strong>Friday</strong> </li>
+<li>08:30 — 10:00: 4.3: Sardor YAKUPOV</li>
+<li>10:15 — 11:45: 4.4: Paolo GHIGGINI</li>
+<li></li>
+</ul>
+<br><br><br> -->
+	  <!-- <ul> -->
+
+<!-- <li><strong> Monday </strong></li> -->
+<!-- <li>09:00 &mdash; 10:15: SIMIAN</li> -->
+<!-- <li>10:45 &mdash; 12:00: FRAMBA</li> -->
+<!-- <li></li> -->
+<!-- <li>15:00 &mdash; 16:15: ADALOGLOU</li> -->
+<!-- <li>16:45 &mdash; 18:00: MASBAUM </li> -->
+<!-- <li></li> -->
+<!-- <li><strong> Tuesday </strong></li> -->
+<!-- <li>09:00 &mdash; 10:30: GHIGGINI </li> -->
+<!-- <li>10:45 &mdash; 12:00: GRAFF</li> -->
+<!-- <li></li> -->
+<!-- <li>15:00 &mdash; 16:15: ZHOU</li> -->
+<!-- <li>16:45 &mdash; 18:00: DETCHERRY</li> -->
+<!-- <li></li> -->
+<!-- <li><strong> Wednesday </strong></li> -->
+<!-- <li>09:00 &mdash; 10:30: SAUNIER</li> -->
+<!-- <li>10:45 &mdash; 12:00: DI PRISA</li> -->
+<!-- <li></li> -->
+<!-- <li><strong> Thursday </strong></li> -->
+<!-- <li>09:00 &mdash; 10:30: TRU&Ouml;L</li> -->
+<!-- <li>10:45 &mdash; 12:00: SANTORO</li> -->
+<!-- <li></li> -->
+<!-- <li>15:00 &mdash; 16:15: BIANCHI</li> -->
+<!-- <li>16:45 &mdash; 18:00: FAES</li> -->
+<!-- <li></li> -->
+<!-- <li><strong> Friday </strong></li> -->
+<!-- <li>09:00 &mdash; 10:15: GODFARD</li> -->
+<!-- <li>10:30 &mdash; 11:45: STENHEDE</li> -->
+	    </ul>
+	  <br>
+	  <br>
+
+
+	  <!-- <a name="pretalks"><h3>Pre-talks</h3></a> -->
+
+	  <!-- <br> -->
+	  <!-- Before the workshops a few online "pre-talks" are scheduled to warm us up and cover some background and motivational material. Recordings and notes will be made available here. <br><br> -->
+
+<!-- 	  <ul> -->
+<!-- 	    <li>17/01/2024: <strong>Overview of the week</strong> (L&eacute;o B&eacute;nard)</li> -->
+<!-- <\!-- <li><a href="Benard-notes.pdf">Notes</a>.</li> -\-> -->
+<!-- 	     <li> -->
+<!-- 	         <video id="video2" style="width:400px;max-width:100%;" controls> -->
+<!-- 	     	   <source src="benard.mp4" type="video/mp4"> -->
+<!-- 		     	       Your browser does not support HTML5 video. You can <a href="benard.mp4">download</a> the video. -->
+<!-- 		     </video> -->
+<!-- 	     	     	  </li> -->
+<!-- 	    <li><a href="benard.mp4" download >Download</a> the video.</li> -->
+<!-- 	    <br><br> -->
+
+	    
+<!-- 	    <li>26/01/2024: <strong>What I understand about spin<sup>c</sup> structures</strong> (Louis-Hadrien Robert)</li> -->
+<!-- 	    <li> -->
+<!-- 	      Due to a human error, the video recording is not available. -->
+<!-- 	    </li> -->
+<!-- 	    <li><a href="robert.pdf" download >Notes</a>.</li> -->
+<!-- 	    <br><br> -->
+<!-- 	    <li>01/02/2024: <strong>Discussion on the index</strong> (Paolo Ghiggini)</li> -->
+<!-- <\!-- <li><a href="Benard-notes.pdf">Notes</a>.</li> -\-> -->
+<!-- 	    <li> -->
+<!-- 	         <video id="video2" style="width:400px;max-width:100%;" controls> -->
+<!-- 	     	   <source src="ghiggini.mp4" type="video/mp4"> -->
+<!-- 		     	       Your browser does not support HTML5 video. You can <a href="ghiggini.mp4">download</a> the video. -->
+<!-- 		     </video> -->
+<!-- 	     	     	  </li> -->
+<!-- 	    <li><a href="ghiggini.mp4" download >Download</a> the video.</li> -->
+<!-- 	    <br><br> -->
+
+
+<!-- 	    	  </ul> -->
+<!-- 	  <br><br> -->
+
+<!-- 	  <\!-- <br>Video and notes available soon<br><br> -\-> -->
+	  
+
+<!-- 	  <ul> -->
+<!-- 	    <li>	  11/01/2023: <strong>Symplectic Geometry</strong> (Guillem CAzassus)</li> -->
+
+<!-- <li><a href="Cazassus-notes.pdf">Notes</a>.</li> -->
+<!-- 	     <li> -->
+<!-- 	         <video id="video2" style="width:600px;max-width:100%;" controls> -->
+<!-- 	     	 <source src="cazassus.webm" type="video/webm"> -->
+<!-- 	     	   <source src="cazassus.mp4" type="video/mp4"> -->
+<!-- 	    	     	       Your browser does not support HTML5 video. You can <a href="cazassus.mp4">download</a> the video. -->
+<!-- 	    	     </video> -->
+<!-- 	     	     	  </li> -->
+<!-- 	    <li><a href="cazassus.mp4" download >Download</a> the video.</li> -->
+<!-- 	    <li>If you want access to the recording of the Q & A session which took place after the talk, please contact the organizers.</li> -->
+<!-- 	    </ul> -->
+
+<!-- 	  <br><br> -->
+<!-- 	  <ul> -->
+<!-- 	    <li>18/01/2023: <strong>Elliptic Regularity</strong> (Han Zhicheng)</li> -->
+<!-- 	    <li><a href="Han-notes.pdf">Notes</a>.</li> -->
+<!-- 	     <li> -->
+<!-- 	         <video id="video2" style="width:600px;max-width:100%;" controls> -->
+<!-- 	     	 <source src="han.webm" type="video/webm"> -->
+<!-- 	     	   <source src="han.mp4" type="video/mp4"> -->
+<!-- 	    	     	       Your browser does not support HTML5 video. You can <a href="han.mp4">download</a> the video. -->
+<!-- 	    	     </video> -->
+<!-- 	     	     	  </li> -->
+<!-- 	    <li><a href="han.mp4" download >Download</a> the video.</li> -->
+<!-- 	    <\!-- <li>If you want access to the recording of the Q & A session which took place after the talk, please contact the organizers.</li> -\-> -->
+
+<!-- 	  </ul> -->
+<!-- 	  <br> -->
+	    <!-- <br><br> -->
+
+	    
+	  <a name="participants"><h3>Participants</h3></a>
+	  <br>
+	 <!--  <img src="BTW4-1.jpg" width="80%"> -->
+	<ul>
+	<li><strong>TBC</strong></li>
+	  <!-- <li>Nikolas Adaloglou (Leiden)</li>
+	  <li>Gerard Bargalló (Berlin)</li>
+	  <li>Filippo Bianchi (Pise)</li> -->
+	  <!-- <li>Sebasti&aacute;n Matías Camponov (Trieste)</li> -->
+	  <!-- <li>Marco Di Marco (Padova)</li>
+	  <li>Quentin Faes (Zurich)</li>
+	  <li>Livio Ferretti (Genève)</li>
+	  <li>Yvon Fredrich (Grenoble)</li>
+	  <li>Paolo Ghiggini (Grenoble)</li> -->
+	  <!-- <li>Anthony Guillen (Grenoble)</li> -->
+	  <!-- <li>Alexis Guérin (Clermont-Ferrand)</li>
+	  <li>Johannes Hauber (Neuchatel)</li>
+	  <li>Benjamin Haïoun (Lyon)</li>
+	  <li>Chun-Sheng Hsueh (Berlin)</li>
+	  <li>Maya Kayali (Dijon)</li>
+	  <li>Lars Kelling (Bochum)</li>
+	  <li>Edwin Kitaeff (Dijon)</li> -->
+	  <!-- <li>Clément Legrand (Clermont-Ferrand)</li> -->
+	  <!-- <li>Ma&yuml;lis Limouzineau (Paris)</li> -->
+	  <!-- <li>Yohann Mandin-Hublé (Grenoble)</li>
+	  <li>Laura Marino (Hamburg)</li> -->
+	  <!-- <li>Jules Martel (Cergy)</li> -->
+	  <!-- <li>Gregor Masbaum (Paris)</li>
+	  <li>Nicola Medici (Lille)</li>
+	  <li>Christian Melder (Vienna)</li>
+	  <li>Joris Moulai (Montpellier)</li>
+	  <li>Delphine Moussard (Marseille)</li>
+	  <li>Neha Nanda (Caen)</li>
+	  <li>Louis-Hadrien Robert (Clermont-Ferrand)</li>
+	  <li>Clarence Rossant (Grenoble)</li>
+	  <li>Léo Schelstraete (MPIM)</li>
+	  <li>Misha Schmalian (Oxford)</li>
+	  <li>Tanushree Shah (Pune)</li>
+	  <li>Gaëtan Simian (Genève)</li>
+	  <li>Simone Tagliente (Budapest)</li>
+	  <li>Sardor Yakupov (Grenoble)</li> -->
+	  
+	</ul>
+	<br><br>
+	<!-- <img src="BTW6_files/photo-btw6.jpg" width="100%" alt=""><br><br>
+	<img src="BTW6_files/photo-btw6-2.jpg" width="70%" alt="">
+	 -->
+	  <!-- 												The full program can be downloaded <a href="TBTW3.pdf">here</a>. -->
+	  <!-- <br><br> -->
+	  <!-- <h4><strong>Monday, April 11th</strong></h4> -->
+	  <!-- <ul> -->
+	  <!--   <li>09:30-10:30: Makri</li> -->
+	  <!--   <li>11:00-12:00: S&aacute;nchez </li> -->
+	  <!--   <li>14:30-15:30: Faes </li> -->
+	  <!--   <li>17:45-19:00: Wildi</li> -->
+	  <!-- </ul> -->
+	  <!-- <br> -->
+	  <!-- <h4><strong>Tuesday, April 12th</strong></h4> -->
+	  <!-- <ul> -->
+	  <!--   <li>09:30-10:30: Manouras</li> -->
+	  <!--   <li>11:00-12:00: Graff </li> -->
+	  <!--   <li>14:30-15:30: Saint-Cricq </li> -->
+	  <!--   <li>17:45-19:00: Moussard </li> -->
+	  <!-- </ul> -->
+	  <!-- <br> -->
+	  <!-- <h4><strong>Wednesday, April 13th</strong></h4> -->
+	  <!-- <ul> -->
+	  <!--   <li>09:30-10:30: Galvin</li> -->
+	  <!--   <li>11:00-12:00: Mandin</li> -->
+	  <!--   <\!-- <li>14:30-15:30:  </li> -\-> -->
+	  <!--   <\!-- <li>17:45-19:00:  </li> -\-> -->
+	  <!-- </ul> -->
+	  <!-- <br> -->
+	  <!-- <h4><strong>Thursday, April 14th</strong></h4> -->
+	  <!-- <ul> -->
+	  <!--   <li>09:30-10:30: Tru&ouml;l</li> -->
+	  <!--   <li>11:00-12:00: Schelstraete </li> -->
+	  <!--   <li>14:30-15:30: Jin </li> -->
+	  <!--   <li>17:45-19:00: Marino </li> -->
+	  <!-- </ul> -->
+	  <!-- <br> -->
+	  <!-- <h4><strong>Friday, April 15th</strong></h4> -->
+	  <!-- <ul> -->
+	  <!--   <li>09:30-10:30: Darn&eacute;</li> -->
+	  <!--   <li>11:00-12:00: Colombari</li> -->
+	  <!--   <\!-- <li>14:30-15:30:  </li> -\-> -->
+	  <!--   <\!-- <li>17:45-19:00:  </li> -\-> -->
+	  <!-- </ul> -->
+
+	  <!--   A large part of the workshop is dedicated to informal discussions.<br> -->
+	<!--   All hours are given in <a href="https://time.is/en/CET">CET-time</a> (UTC+1).  -->
+	<!--   <br><br> -->
+	<!--   <ul> -->
+	<!--     <li><h1>Monday <a style="font-size:15px" href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1612770411658">video</a></h1> -->
+	<!--       <ul> -->
+	<!-- 	<li> -->
+	<!-- 	  10:30 &ndash; 12:00, <strong><a href="https://www.math.univ-toulouse.fr/~swillett/">Sonny Willets</a></strong>: Unifying quantum &#x1D530;&#x1D529;<sub>2</sub> knot invariant. [Wi20]. <a href="Slides/HQI-Willets.pdf">Slides</a>. -->
+	<!-- 	</li> -->
+	<!-- 	<br> -->
+	<!-- 	<li> -->
+	<!-- 	  14:00 &ndash; 15:00, <strong><a href="">Benjamin Ha&iuml;oun</a></strong>: -->
+	<!-- 	  Quantum &#x1D530;&#x1D529;<sub>N</sub> invariant. <a href="Slides/HQI-Haioun.pdf">Slides</a>. -->
+	<!-- 	</li> -->
+	<!-- 	<br> -->
+	<!-- 	<li> -->
+	<!-- 	  15:30 &ndash; 16:30, <strong><a href="">Emmanuel Graff</a></strong>: -->
+	<!-- 	  A homological definition of the HOMFLY polynomial. [Bi07] -->
+	<!-- 	</li> -->
+	<!-- 	<br> -->
+	<!-- 	<li> -->
+	<!-- 	  17:30 &ndash; 19:00, <strong><a href="https://web.math.ucsb.edu/~bigelow/">Stephen Bigelow</a></strong>: Constructing quantum groups from homology of configuration spaces.</li> -->
+	<!-- 	<li style="color=#222222">I will give a -->
+	<!-- 	  construction of the Drinfeld&ndash;Jimbo quantum -->
+	<!-- 	  group corresponding to any simple Lie -->
+	<!-- 	  algebra. It is similar to Martel&apos;s -->
+	<!-- 	  construction -->
+	<!-- 	  of <i>U<sub>q</sub></i>(&#x1D530;&#x1D529;<sub>2</sub>), -->
+	<!-- 	  but using configurations of points that are -->
+	<!-- 	  labelled by simple roots.</li> -->
+	
+	<!--     </li><br> -->
+	<!--     <li><br></li> -->
+	<!--     </ul> -->
+	<!--     <li><h1>Tuesday <a style="font-size:15px" href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1612857697044">video</a></h1>  -->
+	<!--       <ul> -->
+	<!-- 	<li> -->
+	<!-- 	  09:15 &ndash; 10:30, <strong><a href="http://people.mpim-bonn.mpg.de/detcherry/">Renaud Detcherry</a></strong>: Volume conjecture for colored Jones invariant. [HuLe, MuMu] -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  11:00 &ndash; 12:00, Informal discussions. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  14:30 &ndash; 17:45, <strong><a href="http://www.normalesup.org/~benaribi/">Fathi Ben Aribi</a></strong>: Relation betwenn <i>L</i><sup>2</sup>-torsion and hyperbolic volume for cusped manifolds. [L&uuml;Sc]. <a href="Slides/HQI-BenAribi.pdf">Slides</a>. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  16:30 &ndash; 17:30, Informal discussions. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li><br></li> -->
+	<!--       </ul> -->
+	<!--     </li> -->
+	<!--     <li><h1>Wednesday <a style="font-size:15px" href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1612942389286">video</a></h1> -->
+	<!--       <ul> -->
+	<!-- 	<\!-- <li> -\-> -->
+	<!-- 	  <\!--   09:15 &ndash; 10:30, <strong><a href="https://louisioos.github.io/">Louis Ioos</a></strong>: -\-> -->
+	<!-- 	  <\!--   Twisted de Rham cohomology of hyperplane arrangements. [AoKi]  -\-> -->
+	<!-- 	  <\!--   <\\!-- Operads of small discs, braided operads and homology. [Fr, Wa] -\\-> -\-> -->
+	<!-- 	    <\!-- </li> -\-> -->
+	<!-- 	<li> -->
+	<!-- 	  09:15 &ndash; 10:30, <strong><a href="">Vladimir Verchinine</a></strong>: On homotopy braids [BVW]. <a href="Slides/HQI-Verchinine.pdf">Slides</a>. -->
+		 
+	<!-- 	  <\!-- Operads of small discs, braided operads and homology. [Fr, Wa] -\-> -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  11:00 &ndash; 12:00, Informal discussions. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li><br></li> -->
+	<!--       </ul> -->
+	<!--     </li> -->
+	<!--     <li><h1>Thursday <\!-- <a style="font-size:15px" href="">video</a> -\-></h1> -->
+	<!--       <ul> -->
+	<!-- 	<li> -->
+	<!-- 	  09:45 &ndash; 11:15, <strong><a href="http://www.cristinaanghel.ro/">Cristina Palmer-Anghel</a></strong>: Coloured Jones and Alexander polynomials through Lagrangian intersections in configuration spaces. [Ang]. <a href="Slides/HQI-Anghel.pdf">Slides</a>, <a href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1613031010758">Video</a>. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  11:30 &ndash; 12:30, Informal discussions. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  14:00 &ndash; 15:00, <strong><a href="https://sites.google.com/view/marcoderenzi">Marco De Renzi</a></strong>: Non-semisimple quantum invariants of 3-manifolds from the Kauffman bracket. [DRMu]. This talk is co-hosted by <a href="https://lrobert.perso.math.cnrs.fr/kos.html" style="background-color:#000000; color:#FFFFFF;">[K-OS]</a>. <a href="https://lrobert.perso.math.cnrs.fr/Kos/Video/KOS-DeRenzi.mp4">Video</a>. -->
+	<!-- 	  <\!-- Categorification of colored Jones Polynomials. [AbSm, Co14, DrWa, Ma06, We16] -\-> -->
+	<!-- 	  <\!-- <it style="color:gray;">or</it> Integral Verma-modules for quantum &#x1D598;&#x1D591;<sub>n</sub>. -\-> -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  16:30 &ndash; 18:00, <strong><a href="http://wagner.perso.math.cnrs.fr/index.html/">Emmanuel Wagner</a></strong>: Grid diagrams and Jones polynomial. [DrWa]. <a href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1613056455259">Video</a>. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li><br></li> -->
+	<!--       </ul> -->
+	<!--     </li> -->
+	<!--     <li><h1>Friday <\!-- <a style="font-size:15px" href="">video</a> -\-></h1> -->
+	<!--       <ul> -->
+	<!-- 	<li> -->
+	<!-- 	  09:15 &ndash; 10:30, <strong><a href="https://webusers.imj-prg.fr/~christian.blanchet/">Christian Blanchet</a></strong>: Models for the Jones polynomial and categorification. <a href="https://bbb1.cirm-math.fr/playback/presentation/2.0/playback.html?meetingId=5b87b23a2346880fd144053c5eaf8867b78ea865-1613116199045">Video</a>. -->
+	<!-- 	</li><br> -->
+	<!-- 	<li> -->
+	<!-- 	  11:00 &ndash; 12:00, Informal discussions. -->
+	<!-- 	</li><br> -->
+	
+	<!--       </ul> -->
+	<!--     </li>		 -->
+	<!--     <br><br> -->
+	<!--     <h2> References</h2> -->
+	   
+	<!--     <lu> -->
+	<!--       <li> -->
+	<!-- 	<a href="https://arxiv.org/abs/1504.01230">[AbSm]</a> M. Abouzaid, I. Smith, -->
+	<!-- 	<strong>Khovanov homology from Floer cohomology</strong>, -->
+	<!-- 	Journal of the American Mathematical Society, 32 (2019). -->
+	<!--       </li> -->
+	<!--       <li> -->
+	<!-- 	<a href="https://arxiv.org/abs/2002.09390">[Ang]</a> C. Palmer-Anghel, -->
+	<!-- 	<strong>Coloured Jones and Alexander polynomials through Lagrangian intersections in configuration spaces</strong>, -->
+	<!-- 	arXiv:2002.09390. -->
+	<!--       </li> -->
+	<!--       <li><a href="https://link.springer.com/book/10.1007/978-4-431-53938-4">[AoKi]</a> K. Aomoto, M. Kita, -->
+	<!-- 	<strong>Theory of hypergeometric Function</strong>, -->
+	<!-- 	Springer Monographs in Mathematics (2011). <a href="https://bibli.cirm-math.fr/Record.htm?idlist=1&record=19271044124910992269">Available at CIRM library</a> -->
+	<!--       </li>	     -->
+	<!--       <li><a href="https://arxiv.org/abs/math/0412516">[Big04]</a> S. Bigelow, -->
+	<!-- 	<strong>Homological representations of the Iwahori&ndash;Hecke algebra</strong>, -->
+	<!-- 	Geometry and Topology Monographs, 7 (2004). -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/math/0608527">[Big07]</a> S. Bigelow, -->
+	<!-- 	<strong>A homological definition of the HOMFLY polynomial</strong>, -->
+	<!-- 	Algebraic and Geometric Topology, 7 (2007). -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/2008.07806">[BVW]</a> V. G. Bardakov, V. V.Vershinin, J. Wu, -->
+	<!-- 	<strong>On homotopy braids</strong>, arXiv:2008.07806. -->
+	<!--       </li> -->
+	<!--       <li><a href="https://www.bourbaki.fr/TEXTES/1079.pdf">[Co14]</a> V. Colin, -->
+	<!-- 	<strong>R&eacute;alisations g&eacute;om&eacute;triques de l'homologie de Khovanov par des homologies de Floer</strong>, -->
+	<!-- 	S&eacute;minaire Bourbaki 66&egrave;me ann&eacute;e, 1079  (2014). -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/0902.3370">[DrWa]</a> J.-M. Droz, E. Wagner, -->
+	<!-- 	<strong>Grid diagrams and Khovanov homology</strong>, -->
+	<!-- 	Algebraic and Geometric topology, 9 (2009). -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/2007.10831">[DRMu]</a> <strong>Non-semisimple 3-manifold invariants derived from the Kauffman bracket</strong>, Quantum topology (2021). -->
+	<!-- 	<\!-- <li><a href="http://math.univ-lille1.fr/~fresse/OperadHomotopyBook/">[Fr]</a> B. Fresse, -\-> -->
+	<!-- 	<\!--   <strong>Homotopy of operads and Grothendieck&ndash;Teichmüller groups (Volume 1)</strong>, -\-> -->
+	<!-- 	<\!--   Mathematical Surveys and Monographs, 217 (2017). -\-> -->
+	<!-- 	<\!-- </li> -\-> -->
+	<!--       <li><a href="https://arxiv.org/abs/math/0503296">[HuLe]</a> V. Huynh, T. T. Q. L&ecirc;, -->
+	<!-- 	<strong>On the colored Jones polynomial and the Kashaev invariant</strong>,  -->
+	<!-- 	Fundamentalnaya i Prikladnaya Matematika, 11:5 (2005). -->
+	<!--       </li> -->
+	<!--       <li> -->
+	<!-- 	<a href="https://arxiv.org/abs/0912.2114">[JaKe]</a>     C. Jackson, T. Kerler, -->
+	<!-- 	<strong>The Lawrence&ndash;Krammer&ndash;Bigelow representations of the braid groups via quantum <i>sl</i><sub>2</sub></strong>,  -->
+	<!-- 	Advances in Mathematics, 228 (2011). -->
+	<!--       </li> -->
+	<!--       <li> -->
+	<!-- 	<a href="https://www.ms.u-tokyo.ac.jp/~kohno/papers/kohno_qhb.pdf">[Ko12]</a> T. Kohno, -->
+	<!-- 	<strong>Quantum and homological representations of braid groups</strong>,  -->
+	<!-- 	Configuration Spaces - Geometry, Combinatorics and Topology, Edizioni della Normale (2012). -->
+	<!--       </li> -->
+	<!--       <li> -->
+	<!-- 	<a href="https://arxiv.org/abs/dg-ga/9707009">[L&uuml;Sc]</a> W. L&uuml;ck, T. Schick, -->
+	<!-- 	<strong><i>L</i><sup>2</sup>-torsion of hyperbolic manifolds of finite volume</strong>, -->
+	<!-- 	Geometric & Functional Analysis GAFA, 9 (1999). -->
+	<!--       </li>		   -->
+	<!--       <li> -->
+	<!-- 	<a href="https://arxiv.org/abs/math/0411015">[Ma06]</a> C. Manolescu, -->
+	<!-- 	<strong> Nilpotent slices, Hilbert schemes, and the Jones polynomial</strong>, -->
+	<!-- 	Duke Mathemactical Journal ,132 (2006). -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/2002.08785">[Ma20]</a> J. Martel,  -->
+	<!-- 	<strong>A homological model for  <it>U<sub>q</sub></it>(&#x1D530;&#x1D529;<sub>2</sub>) Verma-modules and their braid representations</strong>, -->
+	<!-- 	arXiv:2002.08785. -->
+	<!--       </li> -->
+	<!--       <li><a href="https://arxiv.org/abs/math/9905075">[MuMu]</a> H. Murakami, J. Murakami,  -->
+	<!-- 	<strong>The colored Jones polynomials and the simplicial volume of a knot</strong>,  -->
+	<!-- 	Acta Mathematica, 186 (2001). -->
+	<!--       </li> -->
+	<!--       <\!-- <li><a href="https://ora.ox.ac.uk/objects/uuid:4ae9f906-be3e-4cba-bf3c-a626337d1cf9/download_file?safe_filename=wahl.pdf&file_format=application%2Fpdf&type_of_work=Thesis">[Wa]</a> N. Wahl, -\-> -->
+	<!-- 	<\!--   <strong>Ribbon braids and related operads</strong>, PhD thesis (2001). -\-> -->
+	<!-- 	<\!-- </li> -\-> -->
+	<!--       <li><a href="https://arxiv.org/abs/1404.2736">[We16]</a> P. Wedrich, -->
+	<!-- 	<strong>Categorified &#x1D530;&#x1D529;<sub>N</sub> invariants of colored rational tangles</strong>, -->
+	<!-- 	Algebraic and Geometric Topology 16-1 (2016). -->
+	<!--       </li>		   -->
+	<!--       <li><a href="https://arxiv.org/abs/2003.09854">[Wi20]</a> S. Willets, -->
+	<!-- 	<strong>A unification of the ADO and colored Jones polynomials of a knot</strong>, -->
+	<!-- 	arXiv:2003.09854. -->
+	<!--       </li> -->
+	<!--     </lu> -->
+	<!--     <br><br> -->
+	<!--     <a name="online"><h3>Attend online</h3></a> -->
+	<!--     <br> -->
+	<!--     Except for one talk (see below), we will use the  <a href="https://bigbluebutton.org/">BigBlueButton</a> server from the CIRM. -->
+	<!--     The only requirement to attend the talk online is an up-to-date web-browser (preferably <a href="https://www.google.com/chrome/">chrome</a>, <a href="https://www.chromium.org/getting-involved/download-chromium">chromium</a> or <a href="https://www.mozilla.org/en-US/firefox/new/">firefox</a>). If you forgot or did not receive the password, send an email to the organizers.   <br><br> -->
+	<!--     Before you enter the room, you'll be asked if you want to use camera and microphone. We strongly suggest you to answer yes. Note that once you are in the room, you'll be muted and you can switch you camera on or off. CIRM's documentation about BBB for <a href="https://conferences.cirm-math.fr/uploads/1/6/6/4/16648158/bookletparticipants.pdf">participants</a> and <a href="https://conferences.cirm-math.fr/uploads/1/6/6/4/16648158/bookletspeakers.pdf">speakers</a>. Link to the worskhop room: <a href="https://bbb1.cirm-math.fr/b/org-zj4-ygh">https://bbb1.cirm-math.fr/b/org-zj4-ygh</a>. -->
+	<!--     <br><br> -->
+	<!--     During informal discussion the above mentionned BBB room will be open. An extra room will be open, its address is: <a href="https://bbb1.cirm-math.fr/b/org-uvl-04k-yec">https://bbb1.cirm-math.fr/b/org-uvl-04k-yec</a>. Feel free to use it. Its password has been sent to partipants by email.  -->
+	<!--     <br><br> -->
+	<!--     The talk from Marco De Renzi on February 11th will be hosted on the Zoom room of <a href="https://lrobert.perso.math.cnrs.fr/kos.html" style="background-color:#000000; color:#FFFFFF;">[K-OS]</a>. Details for connections are available <a href="https://lrobert.perso.math.cnrs.fr/join-kos.html">here</a>. -->
+	   
+	<!--     <br><br> -->
+	<!--     Note that for ecological reasons, we do -->
+	<!--     not plan to ship bouillabaisse to online -->
+	<!--     participants.		 -->
+	<!--     <br><br> -->
+	    <a name="organizers"><h3>Organizers</h3></a>
+	    <ul>
+	      <li><a href="https://sites.google.com/view/marcoderenzi">Marco De Renzi</a> (Université de Montpellier)</li>
+	      <li><a href="https://qfaes.pages.math.cnrs.fr/perso_qf/">Quentin Faes</a> (UCLouvain)</li>
+	      <li><a href="http://jmartel.perso.math.cnrs.fr/">Jules Martel</a> (Cergy Paris Université)</li>
+	      <li><a href="https://sites.google.com/view/laura--marino/">Laura Marino</a> (Universität Hamburg)</li>
+	      <li><a href="https://leo-schelstraete.github.io//">Léo Schelstraete</a> (MPIM Bonn)</li>
+	    </ul>
+	<!--     <br><br> -->
+	</div>
+      </div>
+  
+
+</div></body></html>
