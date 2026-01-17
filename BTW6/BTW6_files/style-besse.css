@@ -38,7 +38,7 @@ body{
 	-ms-transition:all .2s linear;
 }
 .header{
-    background-color: #555555;
+    background-color: #63bdfcff;
 }
 /*--menu--*/
 #cssmenu ul {
@@ -61,7 +61,7 @@ body{
 }
 #cssmenu {
 	padding: 0;
-	background-color: #777777;
+	background-color: #2360a7;
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcfcfc', endColorstr='#ffe8e8e8', GradientType=0);
 }
@@ -88,7 +88,7 @@ body{
 
 #cssmenu li.active a, #cssmenu li a:hover{
 	color: #FFFFFF;
-	background: #00473B;
+	background: rgb(255, 113, 31);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#020202',GradientType=0 );
 }
 #cssmenu > ul > li > ul {
